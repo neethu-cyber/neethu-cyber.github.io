@@ -5,249 +5,297 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Priyadarshini M D</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Priyadarshini M D – M.Sc. Data Science student at FAU. Data analytics, SQL and optimization projects on real German energy data.">
+<meta name="description" content="Priyadarshini M D, Data Science master's student at FAU Erlangen-Nürnberg and former Siemens working student. Data analytics, SQL, Python and optimization projects on real German energy data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one calm reading column, a real 24-hour price strip as the header detail, projects as a numbered-free list of case studies. */
+/* Layout: a night-navy grid band with the real 24-hour price curve as the hero, then projects told as questions with one answer each, then how I work, experience and contact on a quiet page. */
 :root {
-  --bg: #f6f8f8;
+  --night: #13263b;        /* hero band, same in both themes */
+  --night-ink: #f2f6f9;
+  --night-muted: #a9bccd;
+  --grid: #6cbfa8;         /* bars on the band */
+  --sun: #e8b84a;          /* midday solar hours */
+  --bg: #f4f7f8;
   --surface: #ffffff;
-  --ink: #15211f;
-  --muted: #55625f;
-  --line: #d9e1df;
-  --accent: #0f6b5c;      /* grid teal */
-  --accent-soft: #dcefea;
-  --sun: #c98a00;         /* midday solar */
+  --ink: #122130;
+  --muted: #566573;
+  --line: #d8e1e6;
+  --accent: #1f7f69;
+  --accent-soft: #e0f0eb;
   --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e1615; --surface: #152120; --ink: #e6eeec; --muted: #9db0ac; --line: #263634;
-    --accent: #4fc1a8; --accent-soft: #17332e; --sun: #f0b938; color-scheme: dark;
+    --bg: #0c1622; --surface: #12202f; --ink: #e5edf3; --muted: #9aaebe; --line: #223447;
+    --accent: #6cbfa8; --accent-soft: #163a35; --night: #0f1f31; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0e1615; --surface: #152120; --ink: #e6eeec; --muted: #9db0ac; --line: #263634;
-  --accent: #4fc1a8; --accent-soft: #17332e; --sun: #f0b938; color-scheme: dark;
+  --bg: #0c1622; --surface: #12202f; --ink: #e5edf3; --muted: #9aaebe; --line: #223447;
+  --accent: #6cbfa8; --accent-soft: #163a35; --night: #0f1f31; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
-body {
-  background: var(--bg); color: var(--ink);
-  font-family: var(--body); font-size: 17px; line-height: 1.6;
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+.inner {
+  max-width: 1040px; margin: 0 auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.wrap { max-width: 980px; margin: 0 auto; padding-block: 56px 72px; display: grid; gap: 72px; }
 a { color: var(--accent); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
-h2 { font-size: 1.6rem; font-weight: 700; }
-h3 { font-size: 1.25rem; font-weight: 700; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.12; text-wrap: balance; margin: 0; }
 p { margin: 0; }
-.label { font-family: var(--mono); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.eyebrow { font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 
-/* Header */
-header { display: grid; gap: 28px; }
-.intro { display: grid; gap: 14px; max-width: 46rem; }
-h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); font-weight: 700; letter-spacing: -.01em; }
-.lede { font-size: 1.2rem; color: var(--muted); }
-.lede strong { color: var(--ink); font-weight: 600; }
-.status { display: inline-flex; align-items: center; gap: 10px; font-size: .95rem; padding: 6px 14px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); width: fit-content; }
-.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.links { display: flex; flex-wrap: wrap; gap: 10px 22px; font-weight: 600; }
+/* Hero band */
+.band { background: var(--night); color: var(--night-ink); }
+.hero { padding-block: 64px 48px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: end; }
+.hero .eyebrow { color: var(--grid); }
+.hero-text { display: grid; gap: 18px; min-width: 0; }
+h1 { font-size: clamp(2.6rem, 5.6vw, 4.1rem); font-weight: 800; letter-spacing: -.02em; }
+@media (min-width: 861px) { h1 { white-space: nowrap; } }
+.lede { font-size: 1.15rem; color: var(--night-muted); max-width: 34rem; }
+.lede b { color: var(--night-ink); font-weight: 600; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; }
+.facts span { font-family: var(--mono); font-size: .8rem; padding: 4px 10px; border: 1px solid rgba(169, 188, 205, .35); border-radius: 4px; color: var(--night-ink); }
+.hero-links { display: flex; flex-wrap: wrap; gap: 10px 22px; font-weight: 600; }
+.hero-links a { color: var(--grid); }
 
-/* Price strip */
-.strip { display: grid; gap: 10px; padding: 18px 20px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
-.bars { display: grid; grid-template-columns: repeat(24, 1fr); align-items: end; gap: 3px; height: 84px; }
-.bars span { display: block; border-radius: 2px 2px 0 0; background: var(--accent); min-height: 4px; }
-.bars span.low { background: var(--sun); }
-.hours { display: grid; grid-template-columns: repeat(24, 1fr); gap: 3px; font-family: var(--mono); font-size: .68rem; color: var(--muted); }
-.hours span { text-align: center; }
-.strip p { font-size: .9rem; color: var(--muted); }
-.strip p b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.curve { display: grid; gap: 10px; min-width: 0; }
+.curve-head { font-family: var(--mono); font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--night-muted); }
+.bars { display: grid; grid-template-columns: repeat(24, 1fr); align-items: end; gap: 3px; height: 150px; }
+.bars button { all: unset; display: block; height: var(--h); background: var(--grid); border-radius: 2px 2px 0 0; cursor: pointer; transition: opacity .15s; }
+.bars button.low { background: var(--sun); }
+.bars:hover button:not(:hover), .bars:focus-within button:not(:focus) { opacity: .45; }
+.bars button:focus-visible { outline: 2px solid var(--night-ink); outline-offset: 2px; }
+.hours { display: grid; grid-template-columns: repeat(24, 1fr); gap: 3px; font-family: var(--mono); font-size: .66rem; color: var(--night-muted); }
+.readout { font-size: .92rem; color: var(--night-muted); min-height: 3em; }
+.readout b { color: var(--night-ink); font-weight: 600; font-variant-numeric: tabular-nums; }
 
-/* Sections */
-section { display: grid; gap: 24px; }
-.about { display: grid; gap: 16px; max-width: 42rem; }
+/* Page sections */
+main { padding-block: 72px 40px; display: grid; gap: 88px; }
+.sec-head { display: grid; gap: 6px; margin-bottom: 28px; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.2rem); font-weight: 800; letter-spacing: -.01em; }
+.sec-head p { color: var(--muted); }
 
-.project { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 28px; align-items: start; padding-block: 28px; border-top: 1px solid var(--line); }
-.project:last-child { border-bottom: 1px solid var(--line); }
-.project .text { display: grid; gap: 12px; min-width: 0; }
-.project .result { font-family: var(--mono); font-size: .95rem; color: var(--ink); background: var(--accent-soft); padding: 8px 12px; border-radius: 6px; }
+/* Projects */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.project { display: grid; gap: 14px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; min-width: 0; }
+.project.featured { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 32px; align-items: center; }
+.project .text { display: grid; gap: 14px; min-width: 0; }
+.project h3 { font-size: 1.3rem; font-weight: 700; }
+.project.featured h3 { font-size: clamp(1.45rem, 2.6vw, 1.85rem); }
+.answer { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.answer strong { font-family: var(--display); font-weight: 800; font-size: 2.4rem; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.answer span { color: var(--muted); font-size: .95rem; max-width: 18rem; }
+.project p.story { color: var(--ink); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-family: var(--mono); font-size: .74rem; padding: 2px 8px; background: var(--accent-soft); border-radius: 4px; color: var(--ink); }
+.plinks { display: flex; flex-wrap: wrap; gap: 8px 20px; font-weight: 600; font-size: .95rem; }
 .project figure { margin: 0; background: #ffffff; border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
 .project img { display: block; width: 100%; height: auto; border-radius: 4px; }
-.tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tags span { font-family: var(--mono); font-size: .74rem; padding: 2px 8px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); }
-.project .links { font-size: .95rem; }
 
-.timeline { display: grid; gap: 0; }
-.job { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 20px; padding-block: 18px; border-top: 1px solid var(--line); }
+/* How I work */
+.ways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.way { display: grid; gap: 8px; align-content: start; padding-top: 16px; border-top: 3px solid var(--sun); min-width: 0; }
+.way h3 { font-size: 1.15rem; font-weight: 700; }
+.way p { color: var(--muted); }
+
+/* Experience */
+.timeline { display: grid; }
+.job { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 20px; padding-block: 20px; border-top: 1px solid var(--line); }
 .job:last-child { border-bottom: 1px solid var(--line); }
 .job .when { font-family: var(--mono); font-size: .85rem; color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
-.job .what { display: grid; gap: 6px; min-width: 0; }
+.job .what { display: grid; gap: 4px; min-width: 0; }
+.job h3 { font-size: 1.12rem; font-weight: 700; }
 .job .org { color: var(--muted); }
-.job ul { margin: 4px 0 0; padding-left: 1.1rem; display: grid; gap: 4px; }
+.job ul { margin: 6px 0 0; padding-left: 1.1rem; display: grid; gap: 4px; }
 
-.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
-.skills div { display: grid; gap: 6px; }
-.skills p { color: var(--ink); }
+.skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.skills div { display: grid; gap: 6px; align-content: start; min-width: 0; }
 
-.contact { display: grid; gap: 14px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+/* Contact */
+.contact { background: var(--night); color: var(--night-ink); border-radius: 12px; padding: 36px; display: grid; gap: 16px; }
+.contact h2 { color: var(--night-ink); }
+.contact p { color: var(--night-muted); }
 .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
-.mail code { font-family: var(--mono); font-size: 1.05rem; user-select: all; overflow-wrap: anywhere; }
-button { font: inherit; font-size: .9rem; font-weight: 600; color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
-button:hover { background: var(--accent-soft); }
-footer { font-size: .85rem; color: var(--muted); }
+.mail code { font-family: var(--mono); font-size: 1.1rem; user-select: all; overflow-wrap: anywhere; color: var(--night-ink); }
+.contact button { font: inherit; font-size: .9rem; font-weight: 600; color: var(--night); background: var(--grid); border: 0; border-radius: 6px; padding: 7px 14px; cursor: pointer; }
+.contact button:hover { background: var(--sun); }
+.contact .hero-links a { color: var(--grid); }
+footer { padding-block: 0 48px; font-size: .82rem; color: var(--muted); }
 
-@media (max-width: 760px) {
-  .wrap { gap: 56px; padding-block: 36px 56px; }
-  .project { grid-template-columns: 1fr; }
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 36px; padding-block: 44px 36px; }
+  .projects { grid-template-columns: 1fr; }
+  .project.featured { grid-template-columns: 1fr; }
+  .ways { grid-template-columns: 1fr; gap: 22px; }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  main { gap: 64px; padding-block: 52px 32px; }
+}
+@media (max-width: 520px) {
   .job { grid-template-columns: 1fr; gap: 4px; }
+  .skills { grid-template-columns: 1fr; }
+  .bars { height: 110px; }
+  .contact { padding: 24px; }
+  .project { padding: 18px; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .bars span { transform-origin: bottom; animation: rise .6s ease-out both; }
-  @keyframes rise { from { transform: scaleY(.15); } to { transform: scaleY(1); } }
+  .bars button { transform-origin: bottom; animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+  @keyframes rise { from { transform: scaleY(.1); } to { transform: scaleY(1); } }
 }
 </style>
-<style>body{margin:0}</style>
 </head>
 <body>
 
-
-<div class="wrap">
-  <header>
-    <div class="intro">
-      <span class="label">Data Science · Nürnberg</span>
+<div class="band">
+  <header class="inner hero">
+    <div class="hero-text">
+      <span class="eyebrow">Data Science · Nürnberg</span>
       <h1>Priyadarshini M D</h1>
-      <p class="lede">Master's student in Data Science at <strong>FAU Erlangen-Nürnberg</strong>. I work with SQL, Python and BI tools, and I like finding out why numbers don't add up. Lately on real German energy data.</p>
-      <div class="links">
+      <p class="lede">Master's student in Data Science at <b>FAU Erlangen-Nürnberg</b>. At <b>Siemens</b> I built the pipelines and Power BI dashboards behind cloud cost reporting. In my own projects I use real German electricity prices to answer practical questions about cost, forecasting and planning.</p>
+      <div class="facts"><span>Ex-Siemens working student</span><span>SQL · Python · Power BI</span><span>5 open-source projects</span></div>
+      <div class="hero-links">
         <a href="https://github.com/neethu-cyber">GitHub</a>
-        <a href="https://linkedin.com/in/priyadarshini-md">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/priyadarshini-md-b0395b293">LinkedIn</a>
         <a href="https://datastudio.google.com/reporting/701014a8-dfae-433a-863c-762ed2fa73e9">Live dashboard</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact">Email</a>
       </div>
     </div>
-
-    <div class="strip" aria-label="Average German day-ahead electricity price by hour in 2025">
+    <figure class="curve" aria-label="Average German day-ahead electricity price by hour of day in 2025" style="margin:0">
+      <figcaption class="curve-head">Germany 2025 · power price by hour · ct/kWh</figcaption>
       <div class="bars" id="bars"></div>
-      <div class="hours" id="hours"></div>
-      <p>Average German day-ahead price by hour of day in 2025, in ct/kWh. Cheapest at <b>13:00 (4.6)</b> when solar floods the grid, most expensive at <b>19:00 (13.6)</b>. This daily pattern is the starting point of most of my projects. Data: SMARD.de</p>
-    </div>
+      <div class="hours" id="hours" aria-hidden="true"></div>
+      <p class="readout" id="readout" aria-live="polite"></p>
+    </figure>
   </header>
+</div>
 
-  <section class="about" aria-labelledby="about-h">
-    <h2 id="about-h">About me</h2>
-    <p>I studied Computer Science in Chennai and worked as a backend developer on a financial trading app before I came to Germany for my Master's.</p>
-    <p>Until September 2026 I was a working student in FinOps and Data Engineering at Siemens. I built pipelines for cloud cost data, made Power BI dashboards for finance and engineering teams, and traced reporting gaps back to their source.</p>
-    <p>Since then I have been building projects on real energy market data: cost controlling, smart charging of batteries and electric cars, and planning under uncertainty.</p>
-  </section>
-
+<main class="inner">
   <section aria-labelledby="work-h">
-    <h2 id="work-h">Projects</h2>
-    <div>
-      <article class="project">
+    <div class="sec-head">
+      <h2 id="work-h">Projects</h2>
+      <p>Each one starts with a question. The code, data sources and full write-up are on GitHub.</p>
+    </div>
+    <div class="projects">
+      <article class="project featured">
         <div class="text">
-          <h3>Energy Cost Controlling</h3>
-          <p>Why did the energy costs of 1,000 homes differ from budget? A SQL pipeline with automated data tests splits the gap into volume, market price and profile effects, on real 2025–2026 SMARD prices.</p>
-          <p class="result">2025: +9% over budget, mainly because PV homes buy power in expensive hours</p>
+          <span class="eyebrow">Energy cost controlling</span>
+          <h3>Why did 1,000 homes spend 9% more on electricity than planned?</h3>
+          <div class="answer"><strong>+9%</strong><span>over budget in 2025, traced down to the cause</span></div>
+          <p class="story">I built a SQL pipeline with automated data quality checks and split the gap between budget and actual cost into volume, price and timing. The price level was not the main problem. Homes with solar panels buy most of their power in the evening and in winter, exactly when it is most expensive.</p>
           <div class="tags"><span>SQL</span><span>Python</span><span>Data tests</span><span>Looker Studio</span></div>
-          <div class="links"><a href="https://datastudio.google.com/reporting/701014a8-dfae-433a-863c-762ed2fa73e9">Live dashboard</a><a href="https://github.com/neethu-cyber/energy-cost-controlling">Code</a></div>
+          <div class="plinks"><a href="https://datastudio.google.com/reporting/701014a8-dfae-433a-863c-762ed2fa73e9">Open the live dashboard</a><a href="https://github.com/neethu-cyber/energy-cost-controlling">Code</a></div>
         </div>
         <figure><img src="images/controlling.png" alt="Variance bridge from 469k EUR budget to 511k EUR actual cost in 2025, split into volume, market price and profile effects" loading="lazy"></figure>
       </article>
 
       <article class="project">
-        <div class="text">
-          <h3>Home Energy Optimizer</h3>
-          <p>When should a home battery and an electric car charge? An optimizer plans each day at 13:00, when tomorrow's prices are published, and is compared with the standard battery rule on real prices and Nürnberg weather.</p>
-          <p class="result">Smart control: −11.5% cost vs. the standard rule on the same dynamic tariff</p>
-          <div class="tags"><span>Python</span><span>MILP</span><span>Forecasting</span><span>scikit-learn</span></div>
-          <div class="links"><a href="https://github.com/neethu-cyber/home-energy-optimizer">Code</a></div>
-        </div>
-        <figure><img src="images/home-energy.png" alt="One week in May 2025 comparing the standard battery rule with smart control, with real prices, PV output and battery level" loading="lazy"></figure>
-      </article>
-
-      <article class="project">
-        <div class="text">
-          <h3>Predict-then-Optimize</h3>
-          <p>Does the most accurate forecast lead to the best decision? Demand forecasts for six hospital medicines feed a stochastic linear program for daily orders with limited cabinet space.</p>
-          <p class="result">Stochastic LP: −57% ordering cost vs. using the point forecast</p>
-          <div class="tags"><span>scikit-learn</span><span>Quantile regression</span><span>Stochastic LP</span></div>
-          <div class="links"><a href="https://github.com/neethu-cyber/predict-then-optimize">Code</a></div>
-        </div>
+        <span class="eyebrow">Hospital medicine ordering</span>
+        <h3>Is the most accurate forecast also the best one to order with?</h3>
+        <div class="answer"><strong>−57%</strong><span>ordering cost, with availability up from 84% to 97%</span></div>
+        <p class="story">I forecast daily demand for six medicines and checked which forecast led to the cheapest orders without shortages. It was not the most accurate one. Planning with the uncertainty of the forecast made the difference.</p>
         <figure><img src="images/predict.png" alt="Forecast error compared with the annual cost of ordering decisions for five methods" loading="lazy"></figure>
+        <div class="tags"><span>scikit-learn</span><span>Quantile regression</span><span>Stochastic LP</span></div>
+        <div class="plinks"><a href="https://github.com/neethu-cyber/predict-then-optimize">Code</a></div>
       </article>
 
       <article class="project">
-        <div class="text">
-          <h3>Resilient Medicine Supply</h3>
-          <p>Which warehouses should supply 15 hospitals when demand is uncertain and warehouses can fail? Deterministic, stochastic and robust plans, evaluated on 200 unseen scenarios.</p>
-          <p class="result">Weeks with shortages: 47% → 6% with the stochastic plan</p>
-          <div class="tags"><span>Stochastic MILP</span><span>Robust optimization</span><span>HiGHS</span></div>
-          <div class="links"><a href="https://github.com/neethu-cyber/resilient-medicine-supply-optimization">Code</a></div>
-        </div>
+        <span class="eyebrow">Medicine supply network</span>
+        <h3>How do you keep 15 hospitals supplied when a warehouse can fail?</h3>
+        <div class="answer"><strong>6%</strong><span>of weeks with shortages, down from 47%</span></div>
+        <p class="story">I modelled where to open warehouses and how much safety stock to keep, and tested every plan on 200 scenarios with uncertain demand and random disruptions.</p>
         <figure><img src="images/medsupply.png" alt="Expected cost and service level of deterministic, stochastic, fair and robust supply plans" loading="lazy"></figure>
+        <div class="tags"><span>Stochastic MILP</span><span>Robust optimization</span><span>HiGHS</span></div>
+        <div class="plinks"><a href="https://github.com/neethu-cyber/resilient-medicine-supply-optimization">Code</a></div>
       </article>
 
       <article class="project">
-        <div class="text">
-          <h3>Heating Network Dispatch</h3>
-          <p>Hour-by-hour scheduling of a heat pump, gas engine, boiler and heat storage for one winter week, including start-up costs and minimum run times.</p>
-          <p class="result">−24% operating cost and −25% CO2 vs. an hour-by-hour controller</p>
-          <div class="tags"><span>Unit commitment</span><span>MILP</span><span>Energy systems</span></div>
-          <div class="links"><a href="https://github.com/neethu-cyber/heating-network-dispatch">Code</a></div>
-        </div>
+        <span class="eyebrow">Home energy optimizer</span>
+        <h3>When should a home battery and an electric car charge?</h3>
+        <div class="answer"><strong>−11.5%</strong><span>yearly energy cost vs. the standard battery rule</span></div>
+        <p class="story">Every day at 13:00, when tomorrow's prices are published, my planner decides when to charge and when to use stored power. It runs on real 2025 prices and Nürnberg weather.</p>
+        <figure><img src="images/home-energy.png" alt="One week in May 2025 comparing the standard battery rule with smart control, with real prices, PV output and battery level" loading="lazy"></figure>
+        <div class="tags"><span>Python</span><span>MILP</span><span>Forecasting</span></div>
+        <div class="plinks"><a href="https://github.com/neethu-cyber/home-energy-optimizer">Code</a></div>
+      </article>
+
+      <article class="project">
+        <span class="eyebrow">Heating network dispatch</span>
+        <h3>How should a small heating network run its machines, hour by hour?</h3>
+        <div class="answer"><strong>−24%</strong><span>operating cost, and 25% less CO2</span></div>
+        <p class="story">I scheduled a heat pump, gas engine, boiler and heat storage for one winter week, with start-up costs and minimum run times, and compared it with a simple hour-by-hour controller.</p>
         <figure><img src="images/heating.png" alt="Optimal heat dispatch over one winter week with heat pump, CHP, boiler and storage" loading="lazy"></figure>
+        <div class="tags"><span>Unit commitment</span><span>MILP</span><span>Energy systems</span></div>
+        <div class="plinks"><a href="https://github.com/neethu-cyber/heating-network-dispatch">Code</a></div>
       </article>
     </div>
   </section>
 
+  <section aria-labelledby="how-h">
+    <div class="sec-head"><h2 id="how-h">How I work</h2></div>
+    <div class="ways">
+      <div class="way">
+        <h3>Start from the decision</h3>
+        <p>A forecast or a dashboard is useful when it helps someone decide. In my medicine project, the most accurate forecast did not lead to the best orders.</p>
+      </div>
+      <div class="way">
+        <h3>Check the data first</h3>
+        <p>My pipelines test for missing hours, impossible values and totals that don't reconcile. At Siemens I traced gaps in carbon reporting back to their source.</p>
+      </div>
+      <div class="way">
+        <h3>Make it easy to use</h3>
+        <p>I build for the people who read the numbers: Power BI reports for finance teams, a live dashboard, and READMEs anyone can follow.</p>
+      </div>
+    </div>
+  </section>
+
   <section aria-labelledby="exp-h">
-    <h2 id="exp-h">Experience and education</h2>
+    <div class="sec-head"><h2 id="exp-h">Experience and education</h2></div>
     <div class="timeline">
       <div class="job">
-        <div class="when">Apr – Sep 2026</div>
+        <div class="when">04/2026 – 09/2026</div>
         <div class="what">
-          <h3>Working Student, FinOps / Data Engineering</h3>
+          <h3>Working Student, FinOps and Data Engineering</h3>
           <span class="org">Siemens AG, Erlangen</span>
           <ul>
-            <li>Pipelines that moved AWS cloud cost data into internal systems via APIs</li>
-            <li>Power BI dashboards and KPI reports for finance and engineering teams</li>
-            <li>Traced gaps in carbon-emissions reporting back to account mappings and data sources</li>
+            <li>Built pipelines that load AWS cloud cost data into internal systems through APIs</li>
+            <li>Created Power BI dashboards and KPI reports for finance, cloud and data engineering teams</li>
+            <li>Traced gaps in carbon emissions reporting back to account mappings and source data</li>
           </ul>
         </div>
       </div>
       <div class="job">
-        <div class="when">In progress</div>
+        <div class="when">Enrolled</div>
         <div class="what">
-          <h3>M.Sc. Data Science (AI &amp; Machine Learning)</h3>
+          <h3>M.Sc. Data Science (AI and Machine Learning)</h3>
           <span class="org">Friedrich-Alexander-Universität Erlangen-Nürnberg</span>
         </div>
       </div>
       <div class="job">
-        <div class="when">Jan 2024 – Feb 2025</div>
+        <div class="when">01/2024 – 02/2025</div>
         <div class="what">
-          <h3>Software / Data Intern</h3>
-          <span class="org">The Megha Foundation &amp; Bharatiya Yuva Shakti Trust, Chennai</span>
+          <h3>Software and Data Intern</h3>
+          <span class="org">The Megha Foundation and Bharatiya Yuva Shakti Trust, Chennai</span>
         </div>
       </div>
       <div class="job">
-        <div class="when">Nov 2022 – Dec 2023</div>
+        <div class="when">11/2022 – 12/2023</div>
         <div class="what">
           <h3>Backend Developer</h3>
           <span class="org">Market Simplified India, Chennai</span>
-          <ul><li>Backend components for the Arihant Capital trading app (Java, Spring Boot, SQL)</li></ul>
+          <ul><li>Backend features for the Arihant Capital trading app with Java, Spring Boot and SQL</li></ul>
         </div>
       </div>
       <div class="job">
         <div class="when">2019 – 2023</div>
         <div class="what">
-          <h3>B.E. Computer Science Engineering</h3>
+          <h3>B.E. Computer Science and Engineering</h3>
           <span class="org">RMD Engineering College, Anna University, Chennai · CGPA 8.9/10</span>
         </div>
       </div>
@@ -255,27 +303,27 @@ footer { font-size: .85rem; color: var(--muted); }
   </section>
 
   <section aria-labelledby="skills-h">
-    <h2 id="skills-h">Skills</h2>
+    <div class="sec-head"><h2 id="skills-h">Skills</h2></div>
     <div class="skills">
-      <div><span class="label">Data</span><p>SQL, Python (pandas, NumPy), ETL pipelines, data tests, Snowflake, Git</p></div>
-      <div><span class="label">Analytics &amp; BI</span><p>Power BI, Looker Studio, KPI reporting, budget vs. actual, variance analysis</p></div>
-      <div><span class="label">Modelling</span><p>Forecasting with scikit-learn, linear and mixed-integer optimization, stochastic programming</p></div>
-      <div><span class="label">Languages</span><p>English: fluent<br>German: improving, B1 in progress</p></div>
+      <div><span class="eyebrow">Data</span><p>SQL, Python (pandas, NumPy), ETL pipelines, data quality tests, Snowflake, Git, AWS</p></div>
+      <div><span class="eyebrow">Analytics and BI</span><p>Power BI (DAX, Power Query), Looker Studio, KPI reporting, budget vs. actual</p></div>
+      <div><span class="eyebrow">Modelling</span><p>Machine learning with scikit-learn, forecasting, linear and mixed-integer optimization</p></div>
+      <div><span class="eyebrow">Languages</span><p>English: fluent<br>German: B1<br>French: basic</p></div>
     </div>
   </section>
 
   <section id="contact" class="contact" aria-labelledby="contact-h">
-    <h2 id="contact-h">Get in touch</h2>
+    <h2 id="contact-h">Let's talk</h2>
     <p>I'm based in Nürnberg. The easiest way to reach me is by email.</p>
     <div class="mail">
       <code id="email">priyadarshinimd253@gmail.com</code>
       <button type="button" id="copy">Copy email</button>
     </div>
-    <div class="links"><a href="https://linkedin.com/in/priyadarshini-md">LinkedIn</a><a href="https://github.com/neethu-cyber">GitHub</a></div>
+    <div class="hero-links"><a href="https://www.linkedin.com/in/priyadarshini-md-b0395b293">LinkedIn</a><a href="https://github.com/neethu-cyber">GitHub</a></div>
   </section>
+</main>
 
-  <footer>Price data: Bundesnetzagentur | SMARD.de (CC BY 4.0). Weather data: Open-Meteo.com (CC BY 4.0).</footer>
-</div>
+<footer class="inner">Price data: Bundesnetzagentur | SMARD.de (CC BY 4.0). Weather data: Open-Meteo.com (CC BY 4.0).</footer>
 
 <script>
 (function () {
@@ -283,34 +331,47 @@ footer { font-size: .85rem; color: var(--muted); }
   var max = Math.max.apply(null, prices);
   var bars = document.getElementById("bars");
   var hours = document.getElementById("hours");
+  var readout = document.getElementById("readout");
+  var rest = "Cheapest at <b>13:00 (4.6)</b>, when solar floods the grid. Most expensive at <b>19:00 (13.6)</b>. This daily curve is behind most of my projects. Tap a bar to see the hour.";
+  readout.innerHTML = rest;
+  function hh(h) { return String(h).padStart(2, "0") + ":00"; }
+  function show(h) {
+    var p = prices[h];
+    var note = p < 6.5 ? "Solar hours, the cheapest time to charge." : (p > 12 ? "Evening peak, when homes with solar buy from the grid." : "");
+    readout.innerHTML = "<b>" + hh(h) + " · " + p.toFixed(1) + " ct/kWh</b>" + (note ? ". " + note : "");
+  }
   prices.forEach(function (p, h) {
-    var b = document.createElement("span");
-    b.style.height = (p / max * 100).toFixed(1) + "%";
+    var b = document.createElement("button");
+    b.type = "button";
+    b.style.setProperty("--h", (p / max * 100).toFixed(1) + "%");
     if (p < 6.5) b.className = "low";
-    b.title = String(h).padStart(2, "0") + ":00 · " + p.toFixed(1) + " ct/kWh";
-    b.style.animationDelay = (h * 18) + "ms";
+    b.setAttribute("aria-label", hh(h) + ", " + p.toFixed(1) + " cents per kilowatt hour");
+    b.style.animationDelay = (h * 22) + "ms";
+    b.addEventListener("mouseenter", function () { show(h); });
+    b.addEventListener("focus", function () { show(h); });
+    b.addEventListener("click", function () { show(h); });
     bars.appendChild(b);
     var t = document.createElement("span");
-    t.textContent = h % 3 === 0 ? String(h).padStart(2, "0") : "";
+    t.textContent = h % 6 === 0 ? hh(h).slice(0, 2) : "";
     hours.appendChild(t);
   });
+  bars.addEventListener("mouseleave", function () { readout.innerHTML = rest; });
 
   var btn = document.getElementById("copy");
   var email = document.getElementById("email");
   btn.addEventListener("click", function () {
-    var text = email.textContent;
     var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy email"; }, 1800); };
     var select = function () {
       var r = document.createRange(); r.selectNodeContents(email);
       var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      btn.textContent = "Selected – press Cmd+C";
+      btn.textContent = "Selected, press Cmd+C";
     };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, select);
-    } else { select(); }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email.textContent).then(done, select);
+      else select();
+    } catch (e) { select(); }
   });
 })();
 </script>
-
 </body>
 </html>
